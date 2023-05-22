@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ms/screens/boxs/sized_boxs.dart';
-import 'package:ms/services/constants/app_colors.dart';
 import 'package:ms/widgets/helper_widgets/cached_image.dart';
 import 'package:ms/widgets/helper_widgets/like_button.dart';
 
@@ -21,7 +20,12 @@ class OpenCategoryPlaylistPage extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return const PlaylistCardWidget();
+                  return GestureDetector(
+                    onTap: (){
+                      
+                    },
+                    child: const PlaylistCardWidget(),
+                  );
                 },
                 childCount: 12,
               ),

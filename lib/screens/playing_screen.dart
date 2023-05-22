@@ -93,3 +93,25 @@ class PlayAudioWidget extends HookConsumerWidget {
     );
   }
 }
+
+class PlayButton extends HookConsumerWidget {
+  final double size;
+  const PlayButton({super.key, this.size = 24});
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final isPlaying = useState<bool>(false);
+    return GestureDetector(
+      onTap: () {
+        isPlaying.value = !isPlaying.value;
+      },
+      child: SizedBox(
+        child: Icon(
+          isPlaying.value ? Icons.pause : Icons.play_arrow,
+          size: size,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}

@@ -80,6 +80,56 @@ class LikeButton extends HookConsumerWidget {
   }
 }
 
+class DLButton extends HookConsumerWidget {
+  final double size;
+  const DLButton({
+    super.key,
+    this.size = 20,
+  });
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final downloaded = useState<bool>(false);
+    return GestureDetector(
+      onTap: () {
+        downloaded.value = !downloaded.value;
+      },
+      child: SizedBox(
+        child: Icon(
+          downloaded.value ? IconlyBold.download : IconlyLight.download,
+          color: Colors.white,
+          size: size,
+        ),
+      ),
+    );
+  }
+}
+
+class FavouriteButton extends HookConsumerWidget {
+  final double size;
+  const FavouriteButton({
+    super.key,
+    this.size = 20,
+  });
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final downloaded = useState<bool>(false);
+    return GestureDetector(
+      onTap: () {
+        downloaded.value = !downloaded.value;
+      },
+      child: SizedBox(
+        child: Icon(
+          !downloaded.value ? Icons.bookmark_outline : Icons.bookmark_added,
+          color: Colors.white,
+          size: size,
+        ),
+      ),
+    );
+  }
+}
+
 class InfoButton extends StatelessWidget {
   final PlaylistData data;
   final bool useBorder;

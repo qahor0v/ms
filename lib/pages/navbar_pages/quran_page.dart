@@ -1,15 +1,18 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:iconly/iconly.dart';
 import 'package:lottie/lottie.dart';
 import 'package:ms/screens/boxs/sized_boxs.dart';
 import 'package:ms/screens/playing_screen.dart';
 import 'package:ms/services/constants/app_colors.dart';
 import 'package:ms/services/constants/asset_paths.dart';
 import 'package:ms/services/playlist/providers.dart';
+import 'package:ms/widgets/helper_widgets/cached_image.dart';
 import 'package:ms/widgets/helper_widgets/like_button.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
@@ -35,19 +38,21 @@ class _QuranPageState extends ConsumerState<QuranPage> {
         data: (data) {
           return CustomScrollView(
             slivers: [
-             
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final pl = data.playlists[index];
                     return ListTile(
+                      minLeadingWidth: 8.0,
+                      horizontalTitleGap: 8.0,
+                      minVerticalPadding: 8.0,
                       title: Text(
                         pl.title,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 13,
+                          fontSize: 12,
                         ),
-                        maxLines: 3,
+                        maxLines: 2,
                       ),
                       subtitle: Text(
                         pl.author,
@@ -56,7 +61,41 @@ class _QuranPageState extends ConsumerState<QuranPage> {
                           fontSize: 10,
                         ),
                       ),
-                      leading: Image.network(pl.thumbnail),
+                      leading: Container(
+                        clipBehavior: Clip.none,
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              pl.thumbnail,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Container(
+                          height: 48,
+                          width: 48,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.black45,
+                          ),
+                          child: const PlayButton(size: 32),
+                        ),
+                      ),
+                      trailing: SizedBox(
+                        height: 48,
+                        width: 54,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: const [
+                            DLButton(),
+                            FavouriteButton(),
+                          ],
+                        ),
+                      ),
                     );
                   },
                   childCount: data.playlists.length,
@@ -65,7 +104,9 @@ class _QuranPageState extends ConsumerState<QuranPage> {
             ],
           );
         },
-        error: (e, m) {},
+        error: (e, m) {
+          return const Text("error");
+        },
         loading: () => const CircularProgressIndicator(
           color: Colors.red,
         ),
