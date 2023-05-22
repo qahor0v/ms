@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
+import 'package:ms/pages/main_pages/open_category_playlist_page.dart';
 import 'package:ms/screens/boxs/sized_boxs.dart';
 import 'package:ms/screens/boxs/sliver_box.dart';
 import 'package:ms/services/constants/app_colors.dart';
@@ -79,108 +80,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
               const LastPlayedPlaylistWidget(),
-              SliverToBoxAdapter(
-                child: Container(
-                  width: double.infinity,
-                  color: Colors.black54,
-                  padding: const EdgeInsets.only(
-                    top: 8.0,
-                    left: 16,
-                    right: 16,
-                    bottom: 8.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Yangi Ma'ruzalar",
-                        style: GoogleFonts.josefinSans(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          "Barchasi",
-                          style: GoogleFonts.josefinSans(
-                            color: mainColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               const TopContentWidget(),
-              SliverToBoxAdapter(
-                child: Container(
-                  color: Colors.black54,
-                  padding: const EdgeInsets.only(
-                    top: 24.0,
-                    left: 16,
-                    right: 16,
-                    bottom: 8.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Yangi Ma'ruzalar",
-                        style: GoogleFonts.josefinSans(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          "Barchasi",
-                          style: GoogleFonts.josefinSans(
-                            color: mainColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               const TopContentWidget(),
-              SliverToBoxAdapter(
-                child: Container(
-                  color: Colors.black54,
-                  padding: const EdgeInsets.only(
-                    top: 24.0,
-                    left: 16,
-                    right: 16,
-                    bottom: 8.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Yangi Ma'ruzalar",
-                        style: GoogleFonts.josefinSans(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          "Barchasi",
-                          style: GoogleFonts.josefinSans(
-                            color: mainColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               const TopContentWidget(),
               SBox(80.0),
             ],
@@ -199,48 +100,93 @@ class TopContentWidget extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         color: Colors.black54,
-        height: 160,
+        height: 192,
         width: double.infinity,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(left: index == 0 ? 16 : 0.0, right: 16),
-              child: SizedBox(
-                height: 160,
-                width: 100,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: CachedImage(
-                        url:
-                            'http://i1.ytimg.com/vi/IIubZNPGLqU/maxresdefault.jpg',
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    HBox(3.0),
-                    Expanded(
-                      child: Text(
-                        "Lorem Ipsum Dolor Loremov Ipsumbek",
-                        style: GoogleFonts.exo(
-                          textStyle: const TextStyle(
-                            color: secondaryColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                        maxLines: 3,
-                      ),
-                    ),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                left: 16,
+                right: 16,
+                bottom: 8.0,
               ),
-            );
-          },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Yangi Ma'ruzalar",
+                    style: GoogleFonts.josefinSans(
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const OpenCategoryPlaylistPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Barchasi",
+                      style: GoogleFonts.josefinSans(
+                        color: mainColor,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.only(left: index == 0 ? 16 : 0.0, right: 16),
+                    child: SizedBox(
+                      height: 160,
+                      width: 100,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: CachedImage(
+                              url:
+                                  'http://i1.ytimg.com/vi/IIubZNPGLqU/maxresdefault.jpg',
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          HBox(3.0),
+                          Expanded(
+                            child: Text(
+                              "Lorem Ipsum Dolor Loremov Ipsumbek",
+                              style: GoogleFonts.exo(
+                                textStyle: const TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              maxLines: 3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

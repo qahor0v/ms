@@ -45,6 +45,7 @@ class NavBar extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return SalomonBottomBar(
+      duration: const Duration(milliseconds: 400),
       margin: const EdgeInsets.only(
         left: 16,
         right: 16,

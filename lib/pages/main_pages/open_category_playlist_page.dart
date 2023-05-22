@@ -3,13 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ms/screens/boxs/sized_boxs.dart';
 import 'package:ms/services/constants/app_colors.dart';
 import 'package:ms/widgets/helper_widgets/cached_image.dart';
+import 'package:ms/widgets/helper_widgets/like_button.dart';
+
 class OpenCategoryPlaylistPage extends StatelessWidget {
   const OpenCategoryPlaylistPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Padding(
+      appBar: AppBar(
+        title: const Text("The Category Name"),
+      ),
+      body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
         child: CustomScrollView(
           slivers: [
@@ -27,6 +32,7 @@ class OpenCategoryPlaylistPage extends StatelessWidget {
     );
   }
 }
+
 class PlaylistCardWidget extends StatelessWidget {
   const PlaylistCardWidget({super.key});
 
@@ -116,35 +122,7 @@ class PlaylistCardWidget extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.only(
-                          left: 8,
-                          right: 8,
-                          top: 6,
-                          bottom: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                          color: mainColor,
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.bookmark_border_outlined,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                            WBox(4.0),
-                            Text(
-                              "Saqlash",
-                              style: GoogleFonts.josefinSans(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      const LikeButton(),
                     ],
                   ),
                 ],
