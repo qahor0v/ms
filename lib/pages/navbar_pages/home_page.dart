@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
@@ -21,6 +22,8 @@ class HomePage extends StatefulHookConsumerWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final isRadioPlaying = useState<bool>(true);
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -63,14 +66,31 @@ class _HomePageState extends ConsumerState<HomePage> {
                 fit: BoxFit.cover,
               ),
             ),
-            child: const Center(child: MyRadioButton()),
+            child: Center(
+              child: MyRadioButton(
+                isPlaying: isRadioPlaying,
+              ),
+            ),
           ),
           CustomScrollView(
             slivers: [
-              SBox(MediaQuery.of(context).size.width),
+              SliverToBoxAdapter(
+                child: MaterialButton(
+                  onPressed: () {
+                    isRadioPlaying.value = !isRadioPlaying.value;
+                  },
+                  padding: EdgeInsets.zero,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ),
+              ),
               const LastPlayedPlaylistWidget(),
               SliverToBoxAdapter(
-                child: Padding(
+                child: Container(
+                  width: double.infinity,
+                  color: Colors.black54,
                   padding: const EdgeInsets.only(
                     top: 8.0,
                     left: 16,
@@ -102,11 +122,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
               const TopContentWidget(),
-              SBox(16.0),
               SliverToBoxAdapter(
-                child: Padding(
+                child: Container(
+                  color: Colors.black54,
                   padding: const EdgeInsets.only(
-                    top: 8.0,
+                    top: 24.0,
                     left: 16,
                     right: 16,
                     bottom: 8.0,
@@ -136,11 +156,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
               const TopContentWidget(),
-              SBox(16.0),
               SliverToBoxAdapter(
-                child: Padding(
+                child: Container(
+                  color: Colors.black54,
                   padding: const EdgeInsets.only(
-                    top: 8.0,
+                    top: 24.0,
                     left: 16,
                     right: 16,
                     bottom: 8.0,
@@ -185,7 +205,8 @@ class TopContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: SizedBox(
+      child: Container(
+        color: Colors.black54,
         height: 160,
         width: double.infinity,
         child: ListView.builder(

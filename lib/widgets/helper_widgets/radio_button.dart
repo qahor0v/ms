@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ms/screens/boxs/sized_boxs.dart';
 
 class MyRadioButton extends HookConsumerWidget {
-  const MyRadioButton({super.key});
+  final ValueNotifier<bool> isPlaying;
+  const MyRadioButton({
+    super.key,
+    required this.isPlaying,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
-    final isPlaying = useState<bool>(true);
     return ElevatedButton.icon(
       onPressed: () {
         isPlaying.value = !isPlaying.value;

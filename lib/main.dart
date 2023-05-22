@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ms/pages/navbar_pages/home_page.dart';
-import 'package:ms/pages/navbar_pages/quran_page.dart';
 import 'package:ms/services/constants/app_colors.dart';
 
 void main() {

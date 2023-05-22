@@ -8,6 +8,7 @@ class SBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
+        width: double.infinity,
         height: height,
       ),
     );
