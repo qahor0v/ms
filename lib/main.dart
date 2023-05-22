@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ms/pages/navbar_pages/home_page.dart';
-import 'package:ms/services/constants/app_colors.dart';
+import 'package:ms/pages/main_pages/home.dart';
+ import 'package:ms/services/constants/app_colors.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: bgColor,
         primarySwatch: primarySw,
       ),
-      home: const HomePage(),
+      home: const Home(),
     );
   }
 }

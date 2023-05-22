@@ -1,5 +1,8 @@
 class MyIcons {
-  static const String quran = "assets/images/quran.png";
+  static const String quran = "assets/images/star.png";
+   static const String radio = "assets/images/antenna.png";
+    static const String downloads = "assets/images/download.png";
+     static const String bookmarks = "assets/images/saved.png";
 }
 
 class MyLotties {

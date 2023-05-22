@@ -3,11 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconly/iconly.dart';
-import 'package:lottie/lottie.dart';
 import 'package:ms/screens/boxs/sized_boxs.dart';
 import 'package:ms/screens/boxs/sliver_box.dart';
 import 'package:ms/services/constants/app_colors.dart';
-import 'package:ms/services/constants/asset_paths.dart';
 import 'package:ms/widgets/helper_widgets/cached_image.dart';
 import 'package:ms/widgets/helper_widgets/radio_button.dart';
 import 'package:ms/widgets/home_widgets/last_listened_card.dart';
@@ -44,12 +42,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             onPressed: () {},
             icon: const Icon(
               IconlyLight.notification,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.bookmark_outline,
             ),
           ),
           WBox(8.0),
