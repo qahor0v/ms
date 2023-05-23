@@ -22,3 +22,29 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+/// Download video from YouTube with Dio package
+/*
+ var yt = YoutubeExplode();
+            var manifest = await yt.videos.streamsClient
+                .getManifest('OUSSxaJCkvY')
+                .then((value) async {
+              final data = value.audio;
+              Dio dio = Dio();
+              try {
+                var dir = await getTemporaryDirectory();
+
+                await dio.download(
+                    data.first.url.toString(), '${dir.path}/${DateTime.now().millisecond}',
+                    onReceiveProgress: (rec, total) {
+                  var progressString =
+                      "${((rec / total) * 100).toStringAsFixed(0)}%";
+                  log(progressString);
+                });
+              } catch (exp) {
+                log(exp.toString());
+              }
+            });
+*/
