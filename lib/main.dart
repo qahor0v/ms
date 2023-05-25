@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ms/pages/main_pages/home.dart';
- import 'package:ms/services/constants/app_colors.dart';
+import 'package:ms/services/constants/app_colors.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Muslim Cloud Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: bgColor,
+        scaffoldBackgroundColor: Colors.black,
         primarySwatch: primarySw,
       ),
       home: const Home(),

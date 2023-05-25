@@ -2,20 +2,10 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:iconly/iconly.dart';
-import 'package:lottie/lottie.dart';
-import 'package:ms/screens/boxs/sized_boxs.dart';
-import 'package:ms/screens/playing_screen.dart';
-import 'package:ms/services/constants/app_colors.dart';
-import 'package:ms/services/constants/asset_paths.dart';
-import 'package:ms/services/playlist/providers.dart';
-import 'package:ms/widgets/helper_widgets/cached_image.dart';
-import 'package:ms/widgets/helper_widgets/like_button.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+ import 'package:hooks_riverpod/hooks_riverpod.dart';
+ import 'package:ms/screens/playing_screen.dart';
+ import 'package:ms/services/playlist/providers.dart';
+ import 'package:ms/widgets/helper_widgets/like_button.dart';
 
 class QuranPage extends StatefulHookConsumerWidget {
   const QuranPage({super.key});

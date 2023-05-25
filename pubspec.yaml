@@ -49,6 +49,9 @@ dependencies:
   text_scroll: ^0.2.0
   wave: ^0.2.2
   salomon_bottom_bar: ^3.3.2
+  quran_uz: ^2.2.1
+  just_audio_background: ^0.0.1-beta.10
+  audio_wave: ^0.1.5
 
 dev_dependencies:
   flutter_test:
