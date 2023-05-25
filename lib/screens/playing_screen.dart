@@ -96,7 +96,12 @@ class PlayAudioWidget extends HookConsumerWidget {
 
 class PlayButton extends HookConsumerWidget {
   final double size;
-  const PlayButton({super.key, this.size = 24});
+  final bool useColor;
+  const PlayButton({
+    super.key,
+    this.size = 24,
+    this.useColor = false,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
@@ -109,7 +114,11 @@ class PlayButton extends HookConsumerWidget {
         child: Icon(
           isPlaying.value ? Icons.pause : Icons.play_arrow,
           size: size,
-          color: Colors.white,
+          color: useColor
+              ? isPlaying.value
+                  ? mainColor
+                  : Colors.white
+              : Colors.white,
         ),
       ),
     );
