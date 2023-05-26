@@ -179,12 +179,18 @@ class OyatAudioTextWidget extends HookConsumerWidget {
             children: [
               GestureDetector(
                 onTap: () async {
-                  isPlaying.value = !isPlaying.value;
-                  await audioPlayer.value
-                      .setUrl(verse.audio.medium)
-                      .then((value) async {
-                    await audioPlayer.value.play();
-                  });
+                  if (isPlaying.value && audioPlayer.value.playing) {
+                    await audioPlayer.value.pause().then((value) {
+                      isPlaying.value = false;
+                    });
+                  } else {
+                    audioPlayer.value
+                        .setUrl(verse.audio.medium)
+                        .then((value) async {
+                      isPlaying.value = true;
+                      audioPlayer.value.play();
+                    });
+                  }
                 },
                 child: SizedBox(
                   child: Icon(isPlaying.value ? Icons.pause : Icons.play_arrow,
@@ -200,11 +206,54 @@ class OyatAudioTextWidget extends HookConsumerWidget {
               WBox(16.0),
               Expanded(
                 child: isPlaying.value
-                    ? const LinearProgressIndicator(
-                        backgroundColor: kBgColor,
-                        value: 0.73,
-                        color: mainColor,
-                      )
+                    ? audioPlayer.value.durationStream != null
+                        ? StreamBuilder<Duration?>(
+                            stream: audioPlayer.value.durationStream,
+                            builder: (context, sd) {
+                              try {
+                                return StreamBuilder<Duration>(
+                                    stream: audioPlayer.value.positionStream,
+                                    builder: (context, sp) {
+                                      try {
+                                        if (sp.data!.inSeconds /
+                                                (sd.data != null
+                                                    ? sd.data!.inSeconds
+                                                    : 0.0) ==
+                                            1.0) {
+                                          Future.delayed(Duration.zero,
+                                              () async {
+                                            isPlaying.value = false;
+                                            await audioPlayer.value.stop();
+                                          });
+                                        }
+                                        if (sp.hasData) {
+                                          return LinearProgressIndicator(
+                                            backgroundColor: kBgColor,
+                                            value: sp.data!.inSeconds /
+                                                (sd.data != null
+                                                    ? sd.data!.inSeconds
+                                                    : 0.0),
+                                            color: mainColor,
+                                          );
+                                        } else if (sp.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const LinearProgressIndicator(
+                                            backgroundColor: kBgColor,
+                                            value: null,
+                                            color: mainColor,
+                                          );
+                                        } else {
+                                          return const SizedBox();
+                                        }
+                                      } catch (e) {
+                                        return const SizedBox();
+                                      }
+                                    });
+                              } catch (e) {
+                                return const SizedBox();
+                              }
+                            })
+                        : const SizedBox()
                     : const SizedBox(),
               ),
               WBox(16.0),
