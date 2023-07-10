@@ -153,12 +153,9 @@ class OpenSurahPage extends HookConsumerWidget {
 }
 
 class OyatAudioTextWidget extends HookConsumerWidget {
-  final Verse verse;
-  final ValueNotifier<AudioPlayer> audioPlayer;
   const OyatAudioTextWidget({
     super.key,
-    required this.verse,
-    required this.audioPlayer,
+    
   });
 
   @override
